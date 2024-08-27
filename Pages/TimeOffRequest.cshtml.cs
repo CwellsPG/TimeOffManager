@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System;  // Needed for DateTime
 
-namespace TimeOffManager.Pages  // Adjust the namespace to match your project structure
+namespace TimeOffManager.Pages  
 {
     public class TimeOffRequestModel : PageModel
     {
@@ -16,7 +16,7 @@ namespace TimeOffManager.Pages  // Adjust the namespace to match your project st
         public void OnGet()
         {
             // Method for handling GET requests
-            // You can include initialization code here if needed
+            // Additioanl code here in further Sprints
         }
 
         public IActionResult OnPost()
@@ -28,9 +28,9 @@ namespace TimeOffManager.Pages  // Adjust the namespace to match your project st
                 return Page();
             }
 
-            // Since there's no database integration yet, you could log these values, show a confirmation message, or simply redirect
-            // For demonstration, let's assume you redirect to a confirmation or index page after successful submission
-            return RedirectToPage("/Index"); // Adjust the redirection to wherever you'd like the user to go post-submission
+            // Additioanl code here in further Sprints - database integration
+            
+            return RedirectToPage("/Index"); 
         }
     }
 }

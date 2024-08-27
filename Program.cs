@@ -12,7 +12,7 @@ builder.Services.AddRazorPages();
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie(options =>
     {
-        options.LoginPath = "/Login"; // Ensure this matches the actual path of your login page
+        options.LoginPath = "/Login"; 
         options.AccessDeniedPath = "/AccessDenied"; // Path when access is denied
         options.Cookie.Name = "YourAppName.AuthCookie";
         options.ExpireTimeSpan = TimeSpan.FromHours(1); // Sets the expiration time for the cookie

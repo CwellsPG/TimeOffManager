@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Security.Claims;
 using System.Threading.Tasks; // Ensure you include this for Task support
 
-namespace TimeOffManager.Pages  // Adjust the namespace to match your project structure
+namespace TimeOffManager.Pages  
 {
     public class LoginModel : PageModel
     {
@@ -19,7 +19,7 @@ namespace TimeOffManager.Pages  // Adjust the namespace to match your project st
         public void OnGet()
         {
             // Method for handling GET requests
-            // You can include initialization code here if needed
+            // Additioanl code here in further Sprints
         }
 
         public async Task<IActionResult> OnPostAsync()
