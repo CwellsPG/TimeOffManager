@@ -1,21 +1,27 @@
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using TimeOffManager.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
 
+// Add DbContext service
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
 // Add authentication services
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-    .AddCookie(options =>
+    .AddCookie("Cookies", options =>
     {
-        options.LoginPath = "/Login"; 
-        options.AccessDeniedPath = "/AccessDenied"; // Path when access is denied
+        options.LoginPath = "/Login";
+        options.AccessDeniedPath = "/AccessDenied";
         options.Cookie.Name = "YourAppName.AuthCookie";
-        options.ExpireTimeSpan = TimeSpan.FromHours(1); // Sets the expiration time for the cookie
+        options.ExpireTimeSpan = TimeSpan.FromHours(1);
     });
 
 var app = builder.Build();
@@ -24,7 +30,7 @@ var app = builder.Build();
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Error");
-    app.UseHsts(); // Enforce the use of HTTPS
+    app.UseHsts();
 }
 
 app.UseHttpsRedirection();
@@ -32,8 +38,8 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
-app.UseAuthentication(); // Enables authentication capabilities
-app.UseAuthorization(); // Enables authorization capabilities
+app.UseAuthentication();
+app.UseAuthorization();
 
 app.MapRazorPages();
 

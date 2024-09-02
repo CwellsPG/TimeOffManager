@@ -2,7 +2,12 @@
 {
     public class LeaveBalance
     {
-        public string LeaveType { get; set; } = ""; // Default to an empty string
-        public int RemainingDays { get; set; } = 1; // Default to 1 for demo
+        public int LeaveBalanceId { get; set; } // Primary key
+
+        public int UserId { get; set; } // Foreign key to the User table
+        public User User { get; set; } // Navigation property to link with the User
+
+        public string LeaveType { get; set; } = ""; // Leave type (e.g., Vacation, Sick Leave, etc.)
+        public int RemainingDays { get; set; } = 1; // Remaining days for this leave type
     }
 }

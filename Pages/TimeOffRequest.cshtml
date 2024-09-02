@@ -33,9 +33,10 @@
     <div class="form-group">
         <label asp-for="LeaveType">Leave Type</label>
         <select asp-for="LeaveType" class="form-control">
-            <option value="Vacation">Vacation</option>
-            <option value="Sick">Sick Leave</option>
-            <option value="Personal">Personal Day</option>
+            @foreach (var balance in Model.LeaveBalances)
+            {
+                <option value="@balance.LeaveType">@balance.LeaveType</option>
+            }
         </select>
         <span asp-validation-for="LeaveType" class="text-danger"></span>
     </div>
@@ -59,3 +60,4 @@
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
 }
+
