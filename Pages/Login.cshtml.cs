@@ -36,7 +36,7 @@ namespace TimeOffManager.Pages
         {
             // Query the database to authenticate the user
             var user = await _context.Users
-                .Include(u => u.Role)  // Assuming you have a Role table linked with User
+                .Include(u => u.Role)  
                 .FirstOrDefaultAsync(u => u.Email == Email && u.Password == Password);
 
             if (user != null) // If a user is found
@@ -44,7 +44,7 @@ namespace TimeOffManager.Pages
                 var claims = new List<Claim>
                 {
                     new Claim(ClaimTypes.Name, user.Email),
-                    new Claim(ClaimTypes.Role, user.Role.RoleName),  // Assuming RoleName is the name of the role in your Role table
+                    new Claim(ClaimTypes.Role, user.Role.RoleName),  
                     new Claim("UserId", user.UserId.ToString()) // Storing the UserId in a claim
                 };
 
@@ -53,7 +53,7 @@ namespace TimeOffManager.Pages
 
                 await HttpContext.SignInAsync("Cookies", principal);
 
-                return RedirectToPage("/Index"); // Redirect to the index page or another dashboard page after successful login
+                return RedirectToPage("/Index"); // Redirect to the home page or another dashboard page after successful login
             }
 
             ErrorMessage = "Invalid login attempt.";

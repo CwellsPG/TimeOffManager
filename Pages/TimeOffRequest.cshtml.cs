@@ -160,7 +160,7 @@ namespace TimeOffManager.Pages
             // Save changes to the database
             await _context.SaveChangesAsync();
 
-            return RedirectToPage("/Index"); // Redirect to an appropriate page after approval
+            return RedirectToPage("/Index"); // Redirect to an home page after approval
         }
     }
 }

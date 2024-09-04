@@ -7,7 +7,7 @@
         public int UserId { get; set; } // Foreign key to the User table
         public User User { get; set; } // Navigation property to link with the User
 
-        public string LeaveType { get; set; } = ""; // Leave type (e.g., Vacation, Sick Leave, etc.)
+        public string LeaveType { get; set; } = ""; // Leave type (Vacation, Sick Leave, etc.)
         public int RemainingDays { get; set; } = 1; // Remaining days for this leave type
     }
 }
