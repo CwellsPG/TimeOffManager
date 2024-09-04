@@ -29,9 +29,19 @@ namespace TimeOffManager.Data
                 .WithMany(u => u.LeaveBalances)
                 .HasForeignKey(lb => lb.UserId);
 
-            // Configure the LeaveRequest entity
+            // Configure the LeaveRequest relationship for the user who made the request
             modelBuilder.Entity<LeaveRequest>()
-                .HasKey(lr => lr.RequestId); // Ensure RequestId is the primary key
+                .HasOne(lr => lr.User)  // The user who made the request
+                .WithMany()
+                .HasForeignKey(lr => lr.UserId)
+                .OnDelete(DeleteBehavior.Restrict); // Prevent cascading delete
+
+            // Configure the LeaveRequest relationship for the user who approves the request
+            modelBuilder.Entity<LeaveRequest>()
+                .HasOne(lr => lr.ApprovedByUser)  // The user who approves the request
+                .WithMany()
+                .HasForeignKey(lr => lr.ApprovedBy)
+                .OnDelete(DeleteBehavior.Restrict); // Prevent cascading delete
 
             base.OnModelCreating(modelBuilder);
         }
